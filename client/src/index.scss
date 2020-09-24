@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #212529;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Header component */
+
+.header {
+  margin: 100px 0 40px;
+  text-align: center;
+  text-transform: uppercase;
+
+  &__title {
+    font-size: 40px;
+    line-height: 50px;
+    color: #212529;
+    font-weight: 400;
+    letter-spacing: 0.1px;
+    text-align: center;
+  }
+
+  &-subtitle {
+    font-size: 16px;
+    color: #4c4b4b;
+    margin-top: 20px;
+    text-align: center;
+  }
+}
+
+/* Sign Up page */
+
+.signup {
+  &__card {
+    max-width: 500px;
+    margin: auto;
+  }
+
+  &__form {
+    display: flex;
+    margin: 10px 20px;
+    flex-direction: column;
+  }
+
+  &__submit {
+    margin: auto;
+    padding: 20px 0;
+  }
+}
+
+/* User Page */
+.users {
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+    margin: 10px 0;
+    cursor: pointer;
+
+    &:hover {
+      -webkit-box-shadow: 0px 4px 10px 0px rgba(191,191,191,1);
+      -moz-box-shadow: 0px 4px 10px 0px rgba(191,191,191,1);
+      box-shadow: 0px 4px 10px 0px rgba(191,191,191,1);
+    }
+
+    &-info {
+      display: flex;
+      align-items: center;
+
+      span {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+/* About page */
+
+.about {
+  &__header {
+    text-align: center;
+    padding: 30px;
+    &-avatar {
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+    }
+  }
+}
