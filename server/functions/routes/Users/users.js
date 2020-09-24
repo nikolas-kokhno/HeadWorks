@@ -26,3 +26,31 @@ exports.getAllUsers = (req, res) => {
         })
 }
 
+exports.addUser = (req, res) => {
+    if (req.body.firstName === '' || req.body.lastName === '') {
+        return res.status(400).json({
+            name: 'Must not be empty'
+        });
+    }
+
+    const newUser = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        gender: req.body.gender,
+        card: req.body.card === undefined ? 'Card not found' : req.body.card,
+        date: new Date().toISOString(),
+    };
+
+    db
+        .collection('users')
+        .add(newUser)
+        .then(doc => {
+            res.json({ message: `User ${doc.id} created successfully` });
+        })
+        .catch(error => {
+            console.error(error);
+            return res.status(500).json({
+                message: 'Something went wrong!'
+            })
+        })
+}

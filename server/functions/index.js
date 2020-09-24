@@ -5,8 +5,9 @@ const app = express();
 
 app.use(cors());
 
-const { getAllUsers } = require('./routes/Users/users');
+const { getAllUsers, addUser } = require('./routes/Users/users');
 
 app.get('/users', getAllUsers);
+app.post('/users', addUser);
 
 exports.api = functions.https.onRequest(app);
