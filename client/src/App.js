@@ -3,10 +3,10 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { Navbar } from './components/Navbar';
-import { AboutPage } from './pages/About';
-import SignUp from './pages/SignUp';
-import MainPage from './pages/Main';
-import { fetchUsers } from './redux/actions/users';
+import About from './pages/About/About';
+import SignUp from './pages/SignUp/SignUp';
+import MainPage from './pages/Main/Main';
+import { fetchUsers, fetchRandomData } from './redux/actions/users';
 import Container from '@material-ui/core/Container';
 
 const App = () => {
@@ -20,15 +20,13 @@ const App = () => {
     <div className="App">
       <Router>
         <Navbar />
-        <Container maxWidth="lg">
-
           <Switch>
             <Route path="/signup">
               <SignUp />
             </Route>
 
             <Route path="/about">
-              <AboutPage />
+              <About />
             </Route>
 
             <Route path="/">
@@ -36,7 +34,6 @@ const App = () => {
             </Route>
           </Switch>
 
-        </Container>
       </Router>
     </div>
   );

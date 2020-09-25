@@ -1,71 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-/* Materil UI components */
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+/* Material UI icon */
 import MenuIcon from '@material-ui/icons/Menu';
+import CloseIcon from '@material-ui/icons/Close';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import FaceIcon from '@material-ui/icons/Face';
 
 export const Navbar = () => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
-
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
     return (
-        <AppBar position="fixed" color="inherit">
-            <Toolbar className="navbar">
-                <Typography variant="h6">
-                    HeadWorks
-                </Typography>
-                <div className="nav__items">
-                    <Link to="/signup">
-                        <Button color="inherit">Регистрация</Button>
-                    </Link>
-                    <Link to="/">
-                        <Button color="inherit">Пользователи</Button>
-                    </Link>
-                    <Link to="/about">
-                        <Button color="inherit">Обо мне</Button>
-                    </Link>
+        <nav className="menu">
+            <input type="checkbox" id="toggle" className="toggle" />
+            <label id="show-menu" htmlFor="toggle">
+                <div className="btn">
+                    <MenuIcon className="material-icons menuBtn md-36 toggleBtn" />
+                    <CloseIcon className="material-icons md-36 toggleBtn closeBtn" />
                 </div>
-                <div className="nav__icon">
-                    <MenuIcon onClick={handleClick} />
 
-                    <Menu
-                        id="simple-menu"
-                        anchorEl={anchorEl}
-                        keepMounted
-                        open={Boolean(anchorEl)}
-                        onClose={handleClose}
-                    >
-                        <MenuItem onClick={handleClose}>
-                            <Link to="/signup">
-                                Регистрация
-                            </Link>
-                        </MenuItem>
-                        <MenuItem onClick={handleClose}>
-                            <Link to="/">
-                                Пользователи
-                            </Link>
-                        </MenuItem>
-                        <MenuItem onClick={handleClose}>
-                            <Link to="/about">
-                                Обо мне
-                            </Link>
-                        </MenuItem>
-                    </Menu>
-                </div>
-            </Toolbar>
-        </AppBar>
+                <Link className="btn" to="/">
+                    <PeopleAltIcon className="material-icons md-36" />
+                </Link>
+
+                <Link className="btn" to="/signup">
+                    <AddCircleOutlineIcon className="material-icons md-36" />
+                </Link>
+
+                <Link className="btn" to="/about">
+                    <FaceIcon className="material-icons md-36" />
+                </Link>
+            </label>
+        </nav>
     )
 }

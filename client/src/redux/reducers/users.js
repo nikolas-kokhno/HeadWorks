@@ -1,6 +1,6 @@
 const initialState = {
     items: [],
-    response: ''
+    response: null
 }
 
 const users = (state = initialState, action) => {

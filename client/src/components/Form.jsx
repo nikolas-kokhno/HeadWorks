@@ -1,29 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { postUser } from '../redux/actions/users';
+
 import { ModalWindow } from './Modal';
 
-/* Material UI components */
-import Card from '@material-ui/core/Card';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
-
-const genders = [
-    {value: "male", label: "мужской"},
-    {value: "female", label: "женский"}
-]
-
-const programs = [
-    {value: "none", label: "недоступна"},
-    {value: "card", label: "пластиковая карта"},
-    {value: "mobile", label: "мобильное приложение"}
-];
-
-const Form = () => {
+const Form = ({ BouncyRight, BouncyUp }) => {
     const [firstName, setName] = React.useState('');
     const [lastName, setLastName] = React.useState('');
     const [gender, setGender] = React.useState('male');
@@ -42,7 +23,7 @@ const Form = () => {
             "gender": gender,
             "card": card
         }
-
+    
         if (firstName === '' || lastName === '') {
             setError('Поля \'Имя или Фамилия\' не могут быть пустыми!');
             setErrorStatuts(true);
@@ -63,94 +44,79 @@ const Form = () => {
     };
 
     return (
-        <Card className="signup__card">
+        <>
             <form className="signup__form">
-                <FormControl margin="dense">
-                    <InputLabel htmlFor="component-simple">
-                        Имя
-                    </InputLabel>
-                    <Input 
-                        id="component-simple" 
+                <BouncyRight className="signup__form-group">
+                    <label htmlFor="">Имя</label>
+                    <input 
+                        type="text" 
+                        placeholder="Введите реальное имя" 
+                        required
+                        className="signup__form-default"
                         value={firstName} 
                         onChange={e => setName(e.target.value)}
                     />
-                </FormControl>
+                </BouncyRight>
 
-                <FormControl margin="dense">
-                    <InputLabel htmlFor="component-simple">
-                        Фамилия
-                    </InputLabel>
-                    <Input 
-                        id="component-simple" 
+                <BouncyRight className="signup__form-group">
+                    <label htmlFor="">Фамилия</label>
+                    <input 
+                        type="text"
+                        placeholder="Введите реальную фамилию" 
+                        required
+                        className="signup__form-default"
                         value={lastName} 
                         onChange={e => setLastName(e.target.value)} 
                     />
-                </FormControl>
+                </BouncyRight>
 
-                <FormControl margin="dense">
-                    <TextField
-                        id="standard-select-currency"
-                        select
-                        label="Пол"
+                <BouncyRight className="signup__form-group">
+                    <label htmlFor="">Пол</label>
+                    <select 
+                        className="signup__form-default"
                         value={gender}
                         onChange={e => setGender(e.target.value)}
                     >
-                        {genders.map((option) => (
-                            <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                </FormControl>
+                        <option value="male">мужской</option>
+                        <option value="female">женский</option>
+                        <option value="other">другой</option>
+                    </select>
+                </BouncyRight>
 
-                <FormControl margin="dense">
-                    <TextField
-                        id="standard-select-currency"
-                        select
-                        label="Программа лояльности"
+                <BouncyRight className="signup__form-group">
+                    <label>Программа лояльности</label>
+                    <select 
+                        className="signup__form-default"
                         value={program}
                         onChange={e => setProgram(e.target.value)}
                     >
-                        {programs.map((option) => (
-                            <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                </FormControl>
-                
-                <FormControl 
-                    margin="dense" 
-                    style={program !== 'card' ? {display: 'none'} : {display: 'inline-flex'}}
-                >
-                    <InputLabel htmlFor="component-simple">
-                        Пластиковая карта
-                    </InputLabel>
-                    <Input 
-                        id="component-simple" 
-                        value={card} 
-                        onChange={e => setCard(e.target.value)} 
-                    />
-                </FormControl>
+                        <option value="none">недоступна</option>
+                        <option value="card">пластиковая карта</option>
+                        <option value="mobile">мобильное приложение</option>
+                    </select>
+                </BouncyRight>
 
-                <div className="signup__submit">
-                    <Button 
-                        variant="contained" 
-                        color="primary"
-                        onClick={submitForm}
-                    >
-                        зарегистрироваться
-                    </Button>
+                <div className="signup__form-group">
+                    <label style={program !== 'card' ? {display: 'none'} : {display: 'inline-flex'}}>
+                        Платиковая карта
+                    </label>
+                    <input type="text" className="signup__form-default" 
+                        style={program !== 'card' ? {display: 'none'} : {display: 'inline-flex'}} 
+                    />
                 </div>
+
+                <BouncyUp className="signup__form-btn">
+                    <button onClick={submitForm}>Регистрация</button>
+                </BouncyUp>
             </form>
-            
+
             <ModalWindow 
                 open={open} 
-                handleClose={handleClose} 
+                handleClose={handleClose}
                 error={error}
                 errorStatus={errorStatus}
             />
-        </Card>
+        </>
     )
 }
 

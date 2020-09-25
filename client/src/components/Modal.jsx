@@ -24,12 +24,12 @@ export const ModalWindow = ({ open, handleClose, error, errorStatus }) => {
                 <div className="modal__paper">
                     <div className="modal__header">
                         <h2 id="transition-modal-title">
-                            {errorStatus ? 'Error' : 'Success'}
+                            {errorStatus ? 'Ошибка' : 'Успех'}
                         </h2>
                         <span onClick={handleClose}>x</span>
                     </div>
                     <div className="modal__body">
-                        {error === '' ? 'The user successfully passed the registration' : error}
+                        {error === '' ? 'Пользователь успешно зарегистрирован!' : error}
                     </div>
                     <div className="modal__footer">
                         <Link to="/" className="modal__footer-btn">
@@ -37,6 +37,13 @@ export const ModalWindow = ({ open, handleClose, error, errorStatus }) => {
                                 Пользователи
                             </Button>
                         </Link>
+                        <Button 
+                            variant="contained" 
+                            color="secondary"
+                            onClick={handleClose}
+                        >
+                            Отмена
+                        </Button>
                     </div>
                 </div>
             </Fade>
