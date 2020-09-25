@@ -13,8 +13,8 @@ export const AboutPage = () => {
     return (
         <div className="about">
             <Header
-                header={'About Me Page'}
-                subheader={'Some information about me'}
+                header={'о разработчике'}
+                subheader={'Личная информация'}
             />
 
             <Paper>
@@ -51,9 +51,15 @@ export const AboutPage = () => {
                 </div>
 
                 <div className="about__footer">
-                    <InstagramIcon />
-                    <TelegramIcon />
-                    <GitHubIcon />
+                    <a href="https://www.instagram.com/n1k0las99/">
+                        <InstagramIcon />
+                    </a>
+                    <a href="https://t.me/nikolaskokhno">
+                        <TelegramIcon />
+                    </a>
+                    <a href="https://github.com/nikolas-kokhno">
+                        <GitHubIcon />
+                    </a>
                 </div>
             </Paper>
         </div>

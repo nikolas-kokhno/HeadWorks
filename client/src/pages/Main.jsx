@@ -7,8 +7,8 @@ const MainPage = () => {
     return (
         <div className="main">
             <Header
-                header={'User List Page'}
-                subheader={'full list of registered users'}
+                header={'Список пользователей'}
+                subheader={'некоторые данные о пользователях'}
             />
             <UserList />
         </div>

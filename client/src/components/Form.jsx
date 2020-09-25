@@ -30,24 +30,32 @@ const Form = () => {
     const [program, setProgram] = React.useState('none');
     const [card, setCard] = React.useState('');
     const [open, setOpen] = React.useState(false);
+    const [error, setError] = React.useState('');
+    const [errorStatus, setErrorStatuts] = React.useState(false);
 
     const dispatch = useDispatch();
 
     const submitForm = () => {
-
         const data = {
             "firstName": firstName,
             "lastName": lastName,
             "gender": gender,
             "card": card
         }
-        
-        dispatch(postUser(data));
-        
-        setOpen(true);
-        setName('');
-        setLastName('');
-        setCard('');
+
+        if (firstName === '' || lastName === '') {
+            setError('Поля \'Имя или Фамилия\' не могут быть пустыми!');
+            setErrorStatuts(true);
+            setOpen(true);
+        } else {
+            dispatch(postUser(data));
+            setError('');
+            setErrorStatuts(false);
+            setOpen(true);
+            setName('');
+            setLastName('');
+            setCard('');
+        }
     }
 
     const handleClose = () => {
@@ -64,7 +72,7 @@ const Form = () => {
                     <Input 
                         id="component-simple" 
                         value={firstName} 
-                        onChange={e => setName(e.target.value)} 
+                        onChange={e => setName(e.target.value)}
                     />
                 </FormControl>
 
@@ -136,7 +144,12 @@ const Form = () => {
                 </div>
             </form>
             
-            <ModalWindow open={open} handleClose={handleClose} />
+            <ModalWindow 
+                open={open} 
+                handleClose={handleClose} 
+                error={error}
+                errorStatus={errorStatus}
+            />
         </Card>
     )
 }

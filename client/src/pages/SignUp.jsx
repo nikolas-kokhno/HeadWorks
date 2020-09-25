@@ -8,8 +8,8 @@ const SignUp = () => {
     return (
         <div className="signup">
             <Header
-                header={'Sign Up Page'}
-                subheader={'new user registration form'}
+                header={'форма регистрации'}
+                subheader={'создайте нового пользователя'}
             />
             <Form />
         </div>

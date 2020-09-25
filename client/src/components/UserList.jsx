@@ -11,8 +11,8 @@ const UserList = () => {
 
     return (
         <div className="users__items">
-            {items.length === 0 ? <Loader /> : 
-                items.map(user => (
+            {items && items.length === 0 ? <Loader /> : 
+                items && items.map(user => (
                     <UserItem
                         key={user.id}
                         firstName={user.firstName}
