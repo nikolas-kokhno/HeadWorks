@@ -1,4 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { postUser } from '../redux/actions/users';
+import { ModalWindow } from './Modal';
 
 /* Material UI components */
 import Card from '@material-ui/core/Card';
@@ -21,11 +24,35 @@ const programs = [
 ];
 
 const Form = () => {
-    const [name, setName] = React.useState('');
+    const [firstName, setName] = React.useState('');
     const [lastName, setLastName] = React.useState('');
     const [gender, setGender] = React.useState('male');
     const [program, setProgram] = React.useState('none');
     const [card, setCard] = React.useState('');
+    const [open, setOpen] = React.useState(false);
+
+    const dispatch = useDispatch();
+
+    const submitForm = () => {
+
+        const data = {
+            "firstName": firstName,
+            "lastName": lastName,
+            "gender": gender,
+            "card": card
+        }
+        
+        dispatch(postUser(data));
+        
+        setOpen(true);
+        setName('');
+        setLastName('');
+        setCard('');
+    }
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <Card className="signup__card">
@@ -36,7 +63,7 @@ const Form = () => {
                     </InputLabel>
                     <Input 
                         id="component-simple" 
-                        value={name} 
+                        value={firstName} 
                         onChange={e => setName(e.target.value)} 
                     />
                 </FormControl>
@@ -59,7 +86,7 @@ const Form = () => {
                         label="Пол"
                         value={gender}
                         onChange={e => setGender(e.target.value)}
-                        >
+                    >
                         {genders.map((option) => (
                             <MenuItem key={option.value} value={option.value}>
                                 {option.label}
@@ -99,11 +126,17 @@ const Form = () => {
                 </FormControl>
 
                 <div className="signup__submit">
-                    <Button variant="contained" color="primary">
+                    <Button 
+                        variant="contained" 
+                        color="primary"
+                        onClick={submitForm}
+                    >
                         зарегистрироваться
                     </Button>
                 </div>
             </form>
+            
+            <ModalWindow open={open} handleClose={handleClose} />
         </Card>
     )
 }

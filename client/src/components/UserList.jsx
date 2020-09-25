@@ -1,26 +1,26 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
+import { Loader } from './Loader';
 import { UserItem } from './UserItem';
 
-const users = [
-    {id: "0", firstName: "Rodrigo", lastName: "Leodan", date: "20/02/2020"},
-    {id: "1", firstName: "Leonargo", lastName: "Kabachek", date: "20/02/2020"},
-    {id: "2", firstName: "Furer", lastName: "Disago", date: "20/02/2020"},
-    {id: "3", firstName: "Ladrego", lastName: "Marcus", date: "20/02/2020"}
-]
-
 const UserList = () => {
+    const { items } = useSelector(({ users }) => {
+        return { items: users.items }
+    });
 
     return (
         <div className="users__items">
-            {users.map(user => (
-                <UserItem
-                    key={user.id}
-                    firstName={user.firstName}
-                    lastName={user.lastName}
-                    date={user.date} 
-                />
-            ))}
+            {items.length === 0 ? <Loader /> : 
+                items.map(user => (
+                    <UserItem
+                        key={user.id}
+                        firstName={user.firstName}
+                        lastName={user.lastName}
+                        date={user.date} 
+                    />
+                )
+            )}
         </div>
     )
 }

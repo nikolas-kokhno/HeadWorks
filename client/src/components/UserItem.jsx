@@ -12,7 +12,7 @@ export const UserItem = ({firstName, lastName, date}) => {
                 <span>{firstName + ' ' + lastName}</span>
             </div>
             <div className="users__item-date">
-                {date}
+                {date.substr(0, 10)}
             </div>
         </Paper >
     )

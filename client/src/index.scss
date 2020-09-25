@@ -16,6 +16,20 @@ a {
   justify-content: space-between;
 }
 
+.nav {
+  &__items {
+    display: block;
+  }
+
+  &__icon {
+    display: none;
+  }
+}
+
+.loader {
+  text-align: center;
+}
+
 /* Header component */
 
 .header {
@@ -37,6 +51,30 @@ a {
     color: #4c4b4b;
     margin-top: 20px;
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .header {
+    &__title {
+      font-size: 30px;
+      line-height: 30px;
+    }
+
+    &-subtitle {
+      font-size: 13px;
+    }
+  }
+
+  .nav {
+    &__items {
+      display: none;
+    }
+
+    &__icon {
+      display: block;
+      cursor: pointer;
+    }
   }
 }
 
@@ -100,4 +138,112 @@ a {
       border-radius: 50%;
     }
   }
+
+  &__body {
+    display: flex;
+    padding: 30px 20px;
+    border-top: 1px solid #ececec;
+
+    &-info {
+      min-width: 200px;
+
+      p {
+        font-weight: bold;
+
+        span {
+          font-weight: normal;
+        }
+      }
+    }
+
+    &-content {
+      p {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  &__footer {
+    text-align: center;
+    border-top: 1px solid #ececec;
+
+    svg {
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  }
 }
+
+@media screen and (max-width: 520px) {
+  .about {
+    &__body {
+      flex-direction: column;
+
+      &-info {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+
+/* Modal */
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Open Sans';
+
+  &__paper {
+    background-color: #ffffff;
+    border: 1px solid #666;
+    border-radius: 5px;
+    width: 395px;
+    outline: none;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 17px;
+
+    h2 {
+      font-size: 24px;
+      font-weight: 400;
+    }
+
+    span {
+      color: #7b7b7b;
+      cursor: pointer;
+      font-size: 20px;
+    }
+  }
+
+  &__body {
+    font-size: 16px;
+    line-height: 24px;
+    color: '#4c4b4b';
+    font-weight: 400;
+    border-top: 1px solid #eceef1;
+    border-bottom: 1px solid #eceef1;
+    padding: 20px 17px;
+  }
+
+  &__footer {
+    text-align: right;
+    margin: 15px 0;
+
+    &-btn {
+      width: 80px;
+      font-size: 16px;
+      color: #fefefe;
+      font-weight: 600;
+      outline: none;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 0;
+      margin: 17px 15px;
+    }
+  }
+}
+/* End Modal */
